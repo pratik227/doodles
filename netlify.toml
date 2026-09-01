@@ -3,7 +3,8 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # tsdown requires ^22.18.0 || >=24.11.0, so Node 20 is too old. Matches the CI workflow.
+  NODE_VERSION = "22"
 
 # The bundle is versioned by deploy, so it can be cached hard.
 [[headers]]
