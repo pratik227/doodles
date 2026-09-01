@@ -1,7 +1,7 @@
 /**
- * naives for Vue 3.
+ * doodlehead for Vue 3.
  *
- *   import { Face, Plate, useTurntable } from 'naives/vue'
+ *   import { Face, Plate, useTurntable } from 'doodlehead/vue'
  *
  *   <Face seed="ada" :yaw="30" :width="280" />
  *

@@ -1,5 +1,5 @@
 /**
- * naives playground.
+ * doodlehead playground.
  *
  * Three views over the same library: a plate of faces, one head you can turn
  * with the mouse, and a turntable contact sheet. Everything is rendered live to
@@ -233,7 +233,7 @@ function download(blob: Blob, name: string): void {
 
 function exportPNG(): void {
   stage.toBlob((b) => {
-    if (b) download(b, `naives-${state.tab}-${state.seed}.png`)
+    if (b) download(b, `doodlehead-${state.tab}-${state.seed}.png`)
   }, 'image/png')
 }
 
@@ -277,7 +277,7 @@ function exportSVG(): void {
       roll: o.roll * RAD,
     })
   }
-  download(new Blob([s.toString()], { type: 'image/svg+xml' }), `naives-${state.tab}-${state.seed}.svg`)
+  download(new Blob([s.toString()], { type: 'image/svg+xml' }), `doodlehead-${state.tab}-${state.seed}.svg`)
 }
 
 // ------------------------------------------------------------------- UI

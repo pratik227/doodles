@@ -24,7 +24,7 @@ export default defineConfig([
     }
   },
   {
-    entry: ['bin/naives.ts'],
+    entry: ['bin/doodlehead.ts'],
     outDir: 'lib/bin',
     format: 'esm',
     platform: 'node',

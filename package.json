@@ -1,5 +1,5 @@
 {
-  "name": "naives",
+  "name": "doodlehead",
   "version": "0.1.0",
   "description": "Algorithmic doodle faces. Every feature lives at a coordinate on an invisible 3D head, so you can turn it.",
   "type": "module",
@@ -56,11 +56,12 @@
     }
   },
   "bin": {
-    "naives": "./lib/bin/naives.js"
+    "doodlehead": "./lib/bin/doodlehead.js"
   },
   "files": [
     "lib",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=18"

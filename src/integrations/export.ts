@@ -46,7 +46,7 @@ export interface ImageFileOptions extends FaceOptions {
   format?: ImageFormat
   /** 0..1, for the lossy formats. Default 0.92. */
   quality?: number
-  /** Default `naives-<seed>.<ext>`. */
+  /** Default `doodlehead-<seed>.<ext>`. */
   filename?: string
 }
 
@@ -68,7 +68,7 @@ export interface VideoFileOptions extends FaceOptions {
   /** Overrides the auto-detected webm codec. */
   mimeType?: string
   videoBitsPerSecond?: number
-  /** Default `naives-<seed>.webm`. */
+  /** Default `doodlehead-<seed>.webm`. */
   filename?: string
   /** Called with 0..1 as the clip records. */
   onProgress?: (progress: number) => void
@@ -138,7 +138,7 @@ export function pickVideoMime(): string | null {
 export async function faceVideoFile(options: VideoFileOptions = {}): Promise<File> {
   const mimeType = options.mimeType ?? pickVideoMime()
   if (!mimeType) {
-    throw new Error('naives: this environment cannot record webm (no MediaRecorder)')
+    throw new Error('doodlehead: this environment cannot record webm (no MediaRecorder)')
   }
   const duration = Math.max(0.1, options.duration ?? 10)
   const fps = Math.max(1, options.fps ?? 24)
@@ -162,7 +162,7 @@ export async function faceVideoFile(options: VideoFileOptions = {}): Promise<Fil
 
   const done = new Promise<void>((resolve, reject) => {
     recorder.onstop = () => resolve()
-    recorder.onerror = () => reject(new Error('naives: recording failed'))
+    recorder.onerror = () => reject(new Error('doodlehead: recording failed'))
   })
 
   const paint = (t: number) => {
@@ -218,7 +218,7 @@ function name(given: string | undefined, seed: Seed | undefined,
   const ext = format === 'webm' ? 'webm' : EXT[format]
   const slug = String(seed ?? kind).replace(/[^\w.-]+/g, '-').slice(0, 48) || kind
 
-  return `naives-${slug}.${ext}`
+  return `doodlehead-${slug}.${ext}`
 }
 
 function textFile(text: string, filename: string): File {
@@ -242,7 +242,7 @@ function rasterCanvas(width: number, height: number): AnyCanvas {
 /** `captureStream` only exists on a real <canvas>, so recording needs one. */
 function displayCanvas(width: number, height: number): HTMLCanvasElement {
   if (typeof document === 'undefined') {
-    throw new Error('naives: rendering to a file needs a canvas (no document here)')
+    throw new Error('doodlehead: rendering to a file needs a canvas (no document here)')
   }
   const c = document.createElement('canvas')
   c.width = Math.max(1, Math.round(width))
@@ -257,7 +257,7 @@ function toBlob(canvas: AnyCanvas, type: string, quality = 0.92): Promise<Blob> 
   }
 
   return new Promise((resolve, reject) => {
-    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error(`naives: could not encode ${type}`))),
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error(`doodlehead: could not encode ${type}`))),
       type, quality)
   })
 }
@@ -274,7 +274,7 @@ function nextFrame(fps: number): Promise<void> {
 }
 
 function abortError(): Error {
-  const e = new Error('naives: recording aborted')
+  const e = new Error('doodlehead: recording aborted')
   e.name = 'AbortError'
 
   return e

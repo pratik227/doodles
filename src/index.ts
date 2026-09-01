@@ -1,7 +1,7 @@
 /**
- * naives -- algorithmic doodle faces.
+ * doodlehead -- algorithmic doodle faces.
  *
- *   import { face, plate, SVGSurface } from 'naives';
+ *   import { face, plate, SVGSurface } from 'doodlehead';
  *
  *   const svg = new SVGSurface({ width: 400, height: 500 });
  *   face(svg, { seed: 'hello', yaw: 0.4 });
@@ -31,7 +31,7 @@ export * as shapes from './shapes'
 export { drawRig } from './rig'
 export { poses, POSE_NAMES, definePose, resolvePose, poseAt } from './poses'
 
-/** Framework-free helpers -- the same ones naives/react and naives/vue wrap. */
+/** Framework-free helpers -- the same ones doodlehead/react and doodlehead/vue wrap. */
 export {
   faceSVG, plateSVG, drawFaceOnCanvas, drawPlateOnCanvas, pickFace, pointerToCanvas,
 } from './integrations/core'

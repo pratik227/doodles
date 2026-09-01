@@ -9,7 +9,7 @@ import { poses } from '../src/poses'
 test('a face comes out as a File, named after its seed', async () => {
   const file = await faceFile({ seed: 'ada', format: 'svg', width: 200 })
   assert.ok(file instanceof File)
-  assert.equal(file.name, 'naives-ada.svg')
+  assert.equal(file.name, 'doodlehead-ada.svg')
   assert.equal(file.type, 'image/svg+xml')
   const text = await file.text()
   assert.match(text, /^<svg /)
@@ -19,13 +19,13 @@ test('a face comes out as a File, named after its seed', async () => {
 
 test('a plate comes out as a File too', async () => {
   const file = await plateFile({ seed: 'monday', format: 'svg', cols: 3, rows: 2, width: 600 })
-  assert.equal(file.name, 'naives-monday.svg')
+  assert.equal(file.name, 'doodlehead-monday.svg')
   assert.match(await file.text(), /^<svg /)
 })
 
 test('the filename can be given, and odd seeds are made safe', async () => {
   assert.equal((await faceFile({ format: 'svg', filename: 'me.svg' })).name, 'me.svg')
-  assert.equal((await faceFile({ seed: 'a b/c:d', format: 'svg' })).name, 'naives-a-b-c-d.svg')
+  assert.equal((await faceFile({ seed: 'a b/c:d', format: 'svg' })).name, 'doodlehead-a-b-c-d.svg')
 })
 
 // ------------------------------------------------------------ raster export
@@ -75,7 +75,7 @@ test('png, jpeg and webp all round-trip through a canvas', async () => {
     ] as const) {
       const file = await faceFile({ seed: 'ada', format, width: 200, quality: 0.8 })
       assert.equal(file.type, mime, `${format} mime`)
-      assert.equal(file.name, `naives-ada.${ext}`)
+      assert.equal(file.name, `doodlehead-ada.${ext}`)
       assert.equal(stub.seen.type, mime)
       assert.equal(stub.seen.quality, 0.8)
     }
@@ -194,7 +194,7 @@ test('a clip records, loops through its pose, and lands as a webm File', async (
     })
 
     assert.ok(file instanceof File)
-    assert.equal(file.name, 'naives-ada.webm')
+    assert.equal(file.name, 'doodlehead-ada.webm')
     assert.equal(file.type, 'video/webm;codecs=vp9')
     assert.ok(file.size > 0)
     assert.ok(stub.painted.length > 2, `only ${stub.painted.length} frames drawn`)

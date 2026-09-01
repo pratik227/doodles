@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * naives CLI
+ * doodlehead CLI
  *
- *   naives face   --seed bob --yaw 25 -o bob.svg
- *   naives plate  --cols 6 --rows 8 --seed monday -o plate.svg
- *   naives turn   --seed bob --frames 12 -o turn.svg
- *   naives sheet  --category eyes -o eyes.svg
- *   naives list   [category]
- *   naives genome --seed bob
+ *   doodlehead face   --seed bob --yaw 25 -o bob.svg
+ *   doodlehead plate  --cols 6 --rows 8 --seed monday -o plate.svg
+ *   doodlehead turn   --seed bob --frames 12 -o turn.svg
+ *   doodlehead sheet  --category eyes -o eyes.svg
+ *   doodlehead list   [category]
+ *   doodlehead genome --seed bob
  */
 
 import { describe, makeGenome } from '../src/genome'
@@ -65,16 +65,16 @@ const cmd = args._[0] || 'plate'
 const out = (args.o ?? args.out) as string | undefined
 
 if (args.help || args.h || cmd === 'help') {
-  console.log(`naives -- algorithmic doodle faces
+  console.log(`doodlehead -- algorithmic doodle faces
 
-  naives face   [--seed s] [--yaw deg] [--pitch deg] [--roll deg] [--size px] [-o file.svg]
-  naives plate  [--cols 6] [--rows 8] [--seed s] [--turn deg] [--width px] [-o file.svg]
-  naives turn   [--seed s] [--frames 12] [--sweep deg] [-o file.svg]
-  naives sheet  --category eyes|nose|mouth|hair|hat|beard|... [-o file.svg]
-  naives genome [--seed s] [--json]
-  naives list   [category]
+  doodlehead face   [--seed s] [--yaw deg] [--pitch deg] [--roll deg] [--size px] [-o file.svg]
+  doodlehead plate  [--cols 6] [--rows 8] [--seed s] [--turn deg] [--width px] [-o file.svg]
+  doodlehead turn   [--seed s] [--frames 12] [--sweep deg] [-o file.svg]
+  doodlehead sheet  --category eyes|nose|mouth|hair|hat|beard|... [-o file.svg]
+  doodlehead genome [--seed s] [--json]
+  doodlehead list   [category]
 
-  Any feature can be pinned:  naives face --nose hook --eyes.left.type spiral
+  Any feature can be pinned:  doodlehead face --nose hook --eyes.left.type spiral
 `)
   process.exit(0)
 }
@@ -199,7 +199,7 @@ if (cmd === 'face') {
   }
   console.log(`\n${Object.values(all).reduce((a, b) => a + b.length, 0)} variants total`)
 } else {
-  console.error(`unknown command "${cmd}". try: naives help`)
+  console.error(`unknown command "${cmd}". try: doodlehead help`)
   process.exit(1)
 }
 

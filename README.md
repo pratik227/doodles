@@ -1,4 +1,4 @@
-# naives
+# doodlehead
 
 Algorithmic doodle faces, in plain JavaScript. No dependencies.
 
@@ -27,28 +27,28 @@ Same code path draws a frontal 48-face plate and a head at 70°.
 ## Quick start
 
 ```bash
-npx tsx bin/naives.ts plate -o plate.svg          # a 6x8 sheet of faces
-npx tsx bin/naives.ts face --seed ada --yaw 40    # one face, turned 40°
-npx tsx bin/naives.ts turn --seed ada --frames 12 # one person, twelve angles
+npx tsx bin/doodlehead.ts plate -o plate.svg          # a 6x8 sheet of faces
+npx tsx bin/doodlehead.ts face --seed ada --yaw 40    # one face, turned 40°
+npx tsx bin/doodlehead.ts turn --seed ada --frames 12 # one person, twelve angles
 npm start                                         # the playground, on :5173
 npm test
 ```
 
 The source is TypeScript, run directly with [tsx][] in development and bundled
 with [tsdown][] for publishing. After `npm run build` the CLI is plain Node:
-`node lib/bin/naives.js plate -o plate.svg`.
+`node lib/bin/doodlehead.js plate -o plate.svg`.
 
 [tsx]: https://tsx.is
 [tsdown]: https://tsdown.dev
 
 ## React and Vue
 
-Both wrappers ship in the same package, as `naives/react` and `naives/vue`.
-They are optional peer dependencies, so installing naives does not drag either
+Both wrappers ship in the same package, as `doodlehead/react` and `doodlehead/vue`.
+They are optional peer dependencies, so installing doodlehead does not drag either
 framework in, and the core library never imports them.
 
 ```jsx
-import { Face, Plate, useTurntable } from 'naives/react'
+import { Face, Plate, useTurntable } from 'doodlehead/react'
 
 const { yaw, pitch, bind } = useTurntable()
 
@@ -58,7 +58,7 @@ const { yaw, pitch, bind } = useTurntable()
 
 ```vue
 <script setup>
-import { Face, Plate, useTurntable } from 'naives/vue'
+import { Face, Plate, useTurntable } from 'doodlehead/vue'
 
 const { yaw, pitch, bind } = useTurntable()
 </script>
@@ -127,11 +127,11 @@ await fetch('/avatar', { method: 'POST', body: new FormData(...) })
 
 `pixelRatio` multiplies the pixels without changing the layout size, so
 `width: 512, pixelRatio: 2` is a 1024px file drawn at full detail rather than
-an upscale. The result is named `naives-<seed>.<ext>` unless you pass
+an upscale. The result is named `doodlehead-<seed>.<ext>` unless you pass
 `filename`.
 
 Outside a component, the same thing is `faceFile()` / `plateFile()` from
-`naives`.
+`doodlehead`.
 
 ## Poses and animated webm
 
@@ -140,7 +140,7 @@ and returns degrees. Every built-in pose is *periodic*, so a clip rendered
 across one full cycle joins back onto itself with no seam.
 
 ```js
-import { poses, POSE_NAMES, definePose } from 'naives'
+import { poses, POSE_NAMES, definePose } from 'doodlehead'
 ```
 
 | pose        | what it does                                        |
@@ -200,7 +200,7 @@ PNG and SVG export from any view.
 ## Library
 
 ```js
-import { SVGSurface, renderFace, renderPlate, makeGenome } from 'naives';
+import { SVGSurface, renderFace, renderPlate, makeGenome } from 'doodlehead';
 
 const svg = new SVGSurface({ width: 400, height: 480, background: '#efe9dd' });
 renderFace(svg, { seed: 'ada', scale: 130, yaw: 0.4, pitch: 0.1 });
@@ -210,7 +210,7 @@ console.log(svg.toString());
 In a browser, swap the surface and everything else is identical:
 
 ```js
-import { Canvas2DSurface, renderFace } from 'naives';
+import { Canvas2DSurface, renderFace } from 'doodlehead';
 const surface = new Canvas2DSurface(canvas.getContext('2d'), 400, 480);
 renderFace(surface, { seed: 'ada', scale: 130 });
 ```
@@ -236,14 +236,14 @@ renderFace(svg, {
 
 Overrides merge deeply and a bare string sets that category's `type`, so
 `{ nose: 'hook' }` is shorthand for `{ nose: { type: 'hook' } }`. The CLI takes
-the same paths: `naives face --nose hook --eyes.left.type spiral`.
+the same paths: `doodlehead face --nose hook --eyes.left.type spiral`.
 
 ### The head, on its own
 
 `Head` is useful without any drawing. It answers geometric questions.
 
 ```js
-import { Head } from 'naives';
+import { Head } from 'doodlehead';
 const head = new Head({ rx: 1, ry: 1.15, rz: 0.9, scale: 100, yaw: 0.6 });
 
 const f = head.frame(0.45, 0.1); // a drawing frame glued to the skull
@@ -289,7 +289,7 @@ wrist, drawn twice at different pressure, and allowed to overshoot its ends.
 
 ```bash
 npm run list                     # all 132 variants
-npx tsx bin/naives.ts list eyes
+npx tsx bin/doodlehead.ts list eyes
 npm run sheets                   # a contact sheet per category, in out/
 ```
 
@@ -299,12 +299,12 @@ hat (11) · beard (11) · accessories (12) · marks (10) · backdrop (11)
 ## CLI
 
 ```txt
-naives face   [--seed s] [--yaw deg] [--pitch deg] [--roll deg] [--size px] [-o f.svg]
-naives plate  [--cols 6] [--rows 8] [--seed s] [--turn deg] [--tilt deg] [-o f.svg]
-naives turn   [--seed s] [--frames 12] [--sweep deg] [-o f.svg]
-naives sheet  --category eyes|nose|mouth|brow|ears|hair|hat|beard|accessories|marks|backdrop
-naives genome [--seed s] [--json]
-naives list   [category]
+doodlehead face   [--seed s] [--yaw deg] [--pitch deg] [--roll deg] [--size px] [-o f.svg]
+doodlehead plate  [--cols 6] [--rows 8] [--seed s] [--turn deg] [--tilt deg] [-o f.svg]
+doodlehead turn   [--seed s] [--frames 12] [--sweep deg] [-o f.svg]
+doodlehead sheet  --category eyes|nose|mouth|brow|ears|hair|hat|beard|accessories|marks|backdrop
+doodlehead genome [--seed s] [--json]
+doodlehead list   [category]
 ```
 
 Any trait can be pinned on any command.

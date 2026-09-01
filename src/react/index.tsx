@@ -1,7 +1,7 @@
 /**
- * naives for React.
+ * doodlehead for React.
  *
- *   import { Face, Plate, useTurntable } from 'naives/react'
+ *   import { Face, Plate, useTurntable } from 'doodlehead/react'
  *
  *   <Face seed="ada" yaw={30} width={280} />
  *
