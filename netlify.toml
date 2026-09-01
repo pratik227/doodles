@@ -5,9 +5,9 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# The library is versioned by deploy, so it can be cached hard.
+# The bundle is versioned by deploy, so it can be cached hard.
 [[headers]]
-  for = "/src/*"
+  for = "/app.js"
   [headers.values]
     Cache-Control = "public, max-age=600"
 

@@ -139,7 +139,9 @@
       <button class="act" id="reroll">Reroll</button>
       <button class="act ghost" id="png">PNG</button>
       <button class="act ghost" id="svg">SVG</button>
+      <button class="act ghost" id="webm" data-for="head">WEBM</button>
     </div>
+    <p class="hint" id="exportHint" hidden></p>
   </fieldset>
 
   <!-- plate -->
@@ -166,9 +168,19 @@
     <input type="range" id="pitch" min="-40" max="40" value="0">
     <label class="row"><span>roll</span><output id="rollOut">0°</output></label>
     <input type="range" id="roll" min="-30" max="30" value="0">
-    <div class="checkline"><input type="checkbox" id="spin"><label for="spin" style="margin:0">auto-spin</label></div>
     <div class="checkline"><input type="checkbox" id="rig"><label for="rig" style="margin:0">show the skull</label></div>
     <p class="hint">Drag the head to turn it.</p>
+  </fieldset>
+
+  <fieldset data-for="head">
+    <legend>Pose</legend>
+    <label><select id="pose"></select></label>
+    <label class="row"><span>loop seconds</span><output id="secondsOut">10</output></label>
+    <input type="range" id="seconds" min="2" max="20" value="10">
+    <p class="hint">
+      A pose is a loopable orientation over time, laid on top of the sliders
+      above. WEBM records one full loop.
+    </p>
   </fieldset>
 
   <fieldset data-for="head">

@@ -12,40 +12,103 @@
     "svg",
     "canvas",
     "avatar",
-    "illustration"
+    "illustration",
+    "react",
+    "vue"
   ],
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./head": "./src/head.js",
-    "./pen": "./src/pen.js",
-    "./genome": "./src/genome.js",
-    "./svg": "./src/surfaces/svg.js",
-    "./canvas": "./src/surfaces/canvas2d.js",
-    "./features/*": "./src/features/*.js"
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./head": {
+      "types": "./lib/head.d.ts",
+      "import": "./lib/head.js"
+    },
+    "./pen": {
+      "types": "./lib/pen.d.ts",
+      "import": "./lib/pen.js"
+    },
+    "./genome": {
+      "types": "./lib/genome.d.ts",
+      "import": "./lib/genome.js"
+    },
+    "./svg": {
+      "types": "./lib/surfaces/svg.d.ts",
+      "import": "./lib/surfaces/svg.js"
+    },
+    "./canvas": {
+      "types": "./lib/surfaces/canvas2d.d.ts",
+      "import": "./lib/surfaces/canvas2d.js"
+    },
+    "./react": {
+      "types": "./lib/react/index.d.ts",
+      "import": "./lib/react/index.js"
+    },
+    "./vue": {
+      "types": "./lib/vue/index.d.ts",
+      "import": "./lib/vue/index.js"
+    },
+    "./features/*": {
+      "types": "./lib/features/*.d.ts",
+      "import": "./lib/features/*.js"
+    }
   },
   "bin": {
-    "naives": "./bin/naives.js"
+    "naives": "./lib/bin/naives.js"
   },
   "files": [
-    "src",
-    "bin",
-    "web",
-    "scripts",
+    "lib",
     "README.md"
   ],
   "engines": {
     "node": ">=18"
   },
   "scripts": {
-    "start": "node scripts/serve.js",
-    "build": "node scripts/build.js",
-    "test": "node --test test/*.test.js",
-    "plate": "node bin/naives.js plate -o out/plate.svg",
-    "face": "node bin/naives.js face -o out/face.svg",
-    "turn": "node bin/naives.js turn -o out/turn.svg",
-    "sheets": "node scripts/sheets.js",
-    "list": "node bin/naives.js list"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build": "tsdown && tsx scripts/build.ts",
+    "prepack": "tsdown",
+    "dev": "tsdown --watch",
+    "start": "npm run build && tsx scripts/serve.ts dist",
+    "test": "node --import tsx --test test/*.test.ts test/*.test.tsx",
+    "plate": "tsx bin/naives.ts plate -o out/plate.svg",
+    "face": "tsx bin/naives.ts face -o out/face.svg",
+    "turn": "tsx bin/naives.ts turn -o out/turn.svg",
+    "sheets": "tsx scripts/sheets.ts",
+    "list": "tsx bin/naives.ts list",
+    "example": "tsx examples/basic.ts"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@eslint/markdown": "^8.0.3",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "eslint": "^10.0.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.11.0",
+    "jiti": "^2.7.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tsdown": "^0.22.14",
+    "tsx": "^4.23.12",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.53.0",
+    "vue": "^3.5.42"
+  },
+  "types": "./lib/index.d.ts",
+  "peerDependencies": {
+    "react": ">=18",
+    "vue": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  }
 }
